@@ -90,10 +90,10 @@
 	<dubbo:registry protocol="zookeeper"
 		address="47.107.84.1:2181" />
 
-	<!--内容接口
+	<!--内容接口-->
 
-	<dubbo:reference interface="com.taotao.service.ItemCatService"
-					 id="itemCatService" timeout="500000"/>-->
+	<dubbo:reference interface="com.taotao.service.ItemService"
+					 id="itemService" timeout="500000"/>
 
 
 </beans>

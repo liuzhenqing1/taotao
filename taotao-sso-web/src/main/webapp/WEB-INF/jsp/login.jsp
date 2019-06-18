@@ -75,11 +75,13 @@
 				return true;
 			},
 			doLogin:function() {
+                dataType:"json";
 				$.post("/user/login", $("#formlogin").serialize(),function(data){
-					if (data.status == 200) {
+					alert(data);
+				    if (data.status == 200) {
 						alert("登录成功！");
 						if (redirectUrl == "") {
-							location.href = "http://localhost:8082";
+							location.href = "http://localhost:8088";
 						} else {
 							location.href = redirectUrl;
 						}

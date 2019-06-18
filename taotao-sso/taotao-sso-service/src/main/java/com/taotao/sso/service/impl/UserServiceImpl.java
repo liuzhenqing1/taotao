@@ -1,6 +1,6 @@
 package com.taotao.sso.service.impl;
 
-import com.sun.corba.se.impl.oa.toa.TOA;
+
 import com.taotao.mapper.TbUserMapper;
 import com.taotao.pojo.TbUser;
 import com.taotao.result.TaotaoResult;
@@ -34,18 +34,19 @@ public class UserServiceImpl implements UserService {
     public TaotaoResult checkUser(String param, int type) {
         if(type==1){
             TbUser tbUser = tbUserMapper.checkUserName(param);
+            System.out.println(tbUser);
             if (tbUser!=null){
-                return TaotaoResult.build(400,"已存在此账号",false);
+                return TaotaoResult.ok(false);
             }
         }else if (type==2){
             TbUser tbUser = tbUserMapper.checkPhone(param);
             if (tbUser!=null){
-            return TaotaoResult.build(400,"已存在此手机号",false);
+            return TaotaoResult.ok(false);
         }
         }else if(type==3){
             TbUser tbUser = tbUserMapper.checkEmail(param);
             if (tbUser!=null){
-                return TaotaoResult.build(400,"已存在此邮箱",false);
+                return TaotaoResult.ok(false);
             }
         }else{
             return TaotaoResult.build(400,"非法参数",false);
@@ -71,20 +72,34 @@ public class UserServiceImpl implements UserService {
         if (!(boolean)result.getData()){
             return TaotaoResult.build(400,"账号已经被使用");
         }
-        TaotaoResult result1 = checkUser(tbUser.getPhone(), 2);
+      /*  TaotaoResult result1 = checkUser(tbUser.getPhone(), 2);
         if (!(boolean)result1.getData()){
             return TaotaoResult.build(400,"手机号已经被使用");
         }
         TaotaoResult result2 = checkUser(tbUser.getEmail(), 3);
         if (!(boolean)result2.getData()){
             return TaotaoResult.build(400,"邮箱已经被使用");
+        }*/
+        //校验电话是否可以
+        if (StringUtils.isNotBlank(tbUser.getPhone())) {
+            result = checkUser(tbUser.getPhone(), 2);
+            if (!(boolean) result.getData()) {
+                return TaotaoResult.build(400, "此手机号已经被使用");
+            }
+        }
+        //校验email是否可用
+        if (StringUtils.isNotBlank(tbUser.getEmail())) {
+            result = checkUser(tbUser.getEmail(), 3);
+            if (!(boolean) result.getData()) {
+                return TaotaoResult.build(400, "此邮件地址已经被使用");
+            }
         }
         Date date =new Date();
         tbUser.setCreated(date);
         tbUser.setUpdated(date);
         tbUser.setPassWord(DigestUtils.md5DigestAsHex(tbUser.getPassWord().getBytes()));
         tbUserMapper.insert(tbUser);
-        return TaotaoResult.ok();
+        return TaotaoResult.ok(true);
     }
 
     @Override

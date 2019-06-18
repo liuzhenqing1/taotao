@@ -252,7 +252,7 @@ window.searchlog = function() {
         var g = encodeURIComponent(m) + "^#psort#^#page#^#cid#^" + encodeURIComponent(window.location.href);
         n.keyword = m
     }
-    var b = "http://sstat.jd.controller/scslog?args=", c = k.length, l;
+    var b = "http://sstat.jd.com/scslog?args=", c = k.length, l;
     if (c > 0) {
         if (k[0] == 0) {
             n.front_cost = LogParm.front_cost = LogParm.front_cost || "0";
@@ -447,7 +447,7 @@ SEARCH.track_iframe_onebox = function() {
 SEARCH.relate_search = {html: null,init: function() {
         if (this.html === null) {
             var a = QUERY_KEYWORD, b = this;
-            $.ajax({url: "http://qpsearch.jd.controller/relationalSearch?keyword=" + encodeURIComponent(a).toLocaleLowerCase(),async: true,scriptCharset: "utf-8",dataType: "jsonp",success: function(c) {
+            $.ajax({url: "http://qpsearch.jd.com/relationalSearch?keyword=" + encodeURIComponent(a).toLocaleLowerCase(),async: true,scriptCharset: "utf-8",dataType: "jsonp",success: function(c) {
                     b.callback(c)
                 }})
         } else {
@@ -466,7 +466,7 @@ SEARCH.relate_search = {html: null,init: function() {
                 }
                 a.push(g[f])
             }
-            var h = '<div class="related-searche"><span>相关搜索：</span>';
+            var h = '<div class="related-search"><span>相关搜索：</span>';
             for (var f = 0, d = Math.min(7, a.length); f < d; f++) {
                 var b = a[f], c = f == 0 ? ' class="fore"' : "", k = f == d - 1 ? "" : "<b></b>";
                 h += "<a onclick='searchlog(1, 0, " + f + ', 52, "' + b + "\");' href='Search?keyword=" + encodeURIComponent(b) + "&enc=utf-8'" + c + ">" + b + "</a>" + k
@@ -479,7 +479,7 @@ SEARCH.relate_search = {html: null,init: function() {
             this.html = ""
         }
     }};
-SEARCH.get_book_summary = {fragment: ['<div class="img"><img src="{img}" width="280" height="280" alt="" /></div><div class="text"><table cellpadding="0" cellspacing="0" border="0" width="100%">{detaile}</table></div>', '<div class="summary"><div class="i-summary"><div class="close" onclick="$(this).parent().parent().hide()"></div><div class="arrow"></div><div class="con"><div class="iloading">\u6b63\u5728\u52a0\u8f7d\u4e2d\uff0c\u8bf7\u7a0d\u5019...</div></div></div></div>', "<tr><td>{name}{value}</td></tr>"],dataUrl: "http://d.360buy.controller/bookExt/get?skuId=",edataUrl: "http://e.jd.controller/ebook/ExteBookService.aspx?stype=searche&skuid=",setPosition: function(a) {
+SEARCH.get_book_summary = {fragment: ['<div class="img"><img src="{img}" width="280" height="280" alt="" /></div><div class="text"><table cellpadding="0" cellspacing="0" border="0" width="100%">{detaile}</table></div>', '<div class="summary"><div class="i-summary"><div class="close" onclick="$(this).parent().parent().hide()"></div><div class="arrow"></div><div class="con"><div class="iloading">\u6b63\u5728\u52a0\u8f7d\u4e2d\uff0c\u8bf7\u7a0d\u5019...</div></div></div></div>', "<tr><td>{name}{value}</td></tr>"],dataUrl: "http://d.360buy.com/bookExt/get?skuId=",edataUrl: "http://e.jd.com/ebook/ExteBookService.aspx?stype=search&skuid=",setPosition: function(a) {
         var c = $(a.get(0)).position(), b = window.pageConfig.wideVersion ? 360 : 120;
         c.left > b && a.find(".summary").addClass("direct-left")
     },init: function() {
@@ -508,7 +508,7 @@ SEARCH.get_book_summary = {fragment: ['<div class="img"><img src="{img}" width="
                         if (!q.img) {
                             q.img = c.find("img").attr("src").replace("/n2/", "/n1/")
                         } else {
-                            q.img = "http://img10.360buyimg.controller/n1/" + q.img
+                            q.img = "http://img10.360buyimg.com/n1/" + q.img
                         }
                         var j = "";
                         var h = "";
@@ -650,7 +650,7 @@ SEARCH.get_im_info = function(a, b) {
     if (!a || !b) {
         return
     }
-    $.ajax({url: "http://chat1.jd.controller/api/checkChat?venderList=" + b,dataType: "jsonp",jsonp: "callback",scriptCharset: "utf-8",success: function(m) {
+    $.ajax({url: "http://chat1.jd.com/api/checkChat?venderList=" + b,dataType: "jsonp",jsonp: "callback",scriptCharset: "utf-8",success: function(m) {
             if (typeof (m) != "object") {
                 return
             }
@@ -683,7 +683,7 @@ SEARCH.get_im_info = function(a, b) {
                 g.commentNum = f(q.siblings(".extra").find("a").html(), /已有(\d+)人评价/);
                 var r = q.siblings(".p-img").find("img");
                 var l = r.attr("src");
-                if (l == undefined || l == "http://misc.360buyimg.controller/lib/img/e/blank.gif") {
+                if (l == undefined || l == "http://misc.360buyimg.com/lib/img/e/blank.gif") {
                     l = r.attr("data-lazyload")
                 }
                 g.imgUrl = f(l, /http\S+?\.com\/\w+?\/(\S+)/);
@@ -692,7 +692,7 @@ SEARCH.get_im_info = function(a, b) {
                 g.seller = $.trim(s.seller);
                 g.venderId = s.venderId;
                 g.entry = "jd_search";
-                var c = "http://chat.jd.controller/index.action?";
+                var c = "http://chat.jd.com/index.action?";
                 for (var p in g) {
                     c += p + "=" + encodeURI(encodeURI(g[p])) + "&"
                 }
@@ -775,7 +775,7 @@ SEARCH.bind_events = {iplocation: (function(e, k) {
                         k.json_city[String(o)] = s;
                         l(s, r, p, q)
                     };
-                    e.getJSONP("http://d.jd.controller/area/get?fid=" + o + "&callback=getAreaList_callback")
+                    e.getJSONP("http://d.jd.com/area/get?fid=" + o + "&callback=getAreaList_callback")
                 } else {
                     l([], r, p, q)
                 }
@@ -893,7 +893,7 @@ SEARCH.bind_events = {iplocation: (function(e, k) {
             })
         }
     })($, window),box_search: function() {
-        var a = $("#box-searche");
+        var a = $("#box-search");
         if (!a.length) {
             return
         }
@@ -912,8 +912,8 @@ SEARCH.bind_events = {iplocation: (function(e, k) {
         })
     },baby_info: function() {
         if ($("#babyQueryAttr").length == 1) {
-            $.delayLoad(false, "http://misc.360buyimg.controller/201007/skin/df/cal.css");
-            $.delayLoad(true, "http://misc.360buyimg.controller/product/js/2013/jQuery.Jcal.min.js", "gbk", SEARCH.get_baby_info)
+            $.delayLoad(false, "http://misc.360buyimg.com/201007/skin/df/cal.css");
+            $.delayLoad(true, "http://misc.360buyimg.com/product/js/2013/jQuery.Jcal.min.js", "gbk", SEARCH.get_baby_info)
         }
     },brandFolded: function() {
         if ($.browser.isIE6) {
@@ -923,7 +923,7 @@ SEARCH.bind_events = {iplocation: (function(e, k) {
         if (!g.length) {
             return
         }
-        var j = $("#brand-searche"), h = g.find("div.tabcon"), i = h.children("div"), c = h.hasClass("show-logo"), b = window.pageConfig.wideVersion ? c ? 14 : 15 : c ? 10 : 12, l = g.find("ul.tab"), f = "可搜索拼音、汉字查找品牌", d = false, e;
+        var j = $("#brand-search"), h = g.find("div.tabcon"), i = h.children("div"), c = h.hasClass("show-logo"), b = window.pageConfig.wideVersion ? c ? 14 : 15 : c ? 10 : 12, l = g.find("ul.tab"), f = "可搜索拼音、汉字查找品牌", d = false, e;
         i.slice(b).css("display", "none");
         c && i.mouseover(function() {
             $(this).addClass("hover")
@@ -1018,7 +1018,7 @@ SEARCH.bind_events = {iplocation: (function(e, k) {
                 return
             }
             if (p != "") {
-                m.util.sGetScript("http://bsearch.jd.controller/?callback=brand_search_result&ids=" + m.brand_ids + "&key=" + encodeURIComponent(p), "UTF-8", true)
+                m.util.sGetScript("http://bsearch.jd.com/?callback=brand_search_result&ids=" + m.brand_ids + "&key=" + encodeURIComponent(p), "UTF-8", true)
             } else {
                 i.css("display", "block")
             }
@@ -1182,7 +1182,7 @@ SEARCH.bind_events = {iplocation: (function(e, k) {
             a.util.bind_attr_href("vt", 2)
         })
     },reSearch: function() {
-        var d = $("#text-stock-searche"), c = $("#btn-stock-searche"), a = "在结果中搜索";
+        var d = $("#text-stock-search"), c = $("#btn-stock-search"), a = "在结果中搜索";
         function b() {
             if ($.trim(d.val()) != "" && $.trim(d.val()) != a) {
                 searchlog(1, 0, 0, 27);
@@ -1286,7 +1286,7 @@ SEARCH.page = function(b, a) {
     if (b < 1) {
         b = 1
     }
-    window.location = "http://localhost:8082/searche.html?q="+SEARCH.query+"&page="+b;
+    window.location = "http://localhost:8082/search.html?q="+SEARCH.query+"&page="+b;
 //    if (a) {
 //        window.scrollTo(0, $("#filter").offset().top)
 //    }
@@ -1701,7 +1701,7 @@ function surveyShow() {
 function ebook_download(b, a) {
     $.login({modal: true,complete: function(c) {
             if (c != null && c.IsAuthenticated != null && c.IsAuthenticated) {
-                var d = "http://gw.e.jd.controller/downrecord/downrecord_insert.action?ebookId=" + b + "&key=" + a + "&callback=?";
+                var d = "http://gw.e.jd.com/downrecord/downrecord_insert.action?ebookId=" + b + "&key=" + a + "&callback=?";
                 $.getJSON(d, function(f) {
                     if (f.code == 1) {
                         var e = confirm("如您已安装京东LeBook客户端，请点击“确定”自动启动客户端\n如您尚未安装京东LeBook客户端，请点击“取消”将引导您免费安装客户端");
@@ -1709,7 +1709,7 @@ function ebook_download(b, a) {
                             window.location = "LEBK:///Bought"
                         } else {
                             if (confirm('如果您没有安装LeBook客户端，请点击"确定"按钮到京东网站下载\n如果您不需要安装，请点击"取消"按钮')) {
-                                window.open("http://e.jd.controller/ebook/lebook_pc.aspx")
+                                window.open("http://e.jd.com/ebook/lebook_pc.aspx")
                             }
                         }
                         return
@@ -1726,7 +1726,7 @@ SEARCH.get_digital_price = function(b, a) {
     })
 };
 SEARCH.get_ware_stock = function(b, a) {
-    $.getJSON("http://searche.jd.controller/stock?skus=" + b.replace(/J_/g, "") + "&district=" + a.split("-").slice(0, 3).join("_") + "&callback=?", function(c) {
+    $.getJSON("http://search.jd.com/stock?skus=" + b.replace(/J_/g, "") + "&district=" + a.split("-").slice(0, 3).join("_") + "&callback=?", function(c) {
         SEARCH.set_ware_stock_data(c)
     })
 };
@@ -1741,7 +1741,7 @@ SEARCH.get_prompt_flag = function(a) {
     })
 };
 SEARCH.get_comment_nums = function(a, b) {
-    $.getJSON("http://club.jd.controller/clubservice/summary-m-" + a.replace(/J_/g, "") + ".html?callback=?", function(c) {
+    $.getJSON("http://club.jd.com/clubservice/summary-m-" + a.replace(/J_/g, "") + ".html?callback=?", function(c) {
         SEARCH.set_comment_nums_data(c, b)
     })
 };
@@ -1777,7 +1777,7 @@ SEARCH.get_presale_info = function() {
         if (!g) {
             return false
         }
-        $.getJSON("http://soa.yushou.jd.controller/yushoulistinfo.action?sku=" + g + "&callback=?", function(o) {
+        $.getJSON("http://soa.yushou.jd.com/yushoulistinfo.action?sku=" + g + "&callback=?", function(o) {
             if (typeof (o) != "object" || o.type == "1" || !o.ret) {
                 return false
             }
@@ -2030,7 +2030,7 @@ SEARCH.get_ware_info_merge = function(e, c) {
     for (var d = 1, a = f.apiArray.length - 1; d <= a; d = d * 2) {
         f.apiArray[d][3] = false
     }
-    $.getJSONP("http://searche.jd.controller/mergesearch?skuids=" + b + "&apiType=1,2,4,8,16&area=" + c.split("-").slice(0, 3).join("_") + "&callback=SEARCH.jsonpcallback");
+    $.getJSONP("http://search.jd.com/mergesearch?skuids=" + b + "&apiType=1,2,4,8,16&area=" + c.split("-").slice(0, 3).join("_") + "&callback=SEARCH.jsonpcallback");
     setTimeout(function() {
         for (var j = 1, h, g = f.apiArray.length - 1; j <= g; j = j * 2) {
             if (f.apiArray[j][3] == false) {
@@ -2099,13 +2099,13 @@ SEARCH.get_baby_info = function() {
             }
         }
         if (l.status == "now") {
-            j.find(".tc-info").html('您的宝宝<strong>即将出生</strong>啦！<a href="javascript:;" class="tci-change" clstag="searche|keycount|searche|updatebabyinfo">[ 修改信息 ]</a>')
+            j.find(".tc-info").html('您的宝宝<strong>即将出生</strong>啦！<a href="javascript:;" class="tci-change" clstag="search|keycount|search|updatebabyinfo">[ 修改信息 ]</a>')
         } else {
             if (l.status == "past") {
-                j.find(".tc-info").html("您的宝宝已经<strong>" + l.tip + '</strong>啦！<a href="javascript:;" class="tci-change" clstag="searche|keycount|searche|updatebabyinfo">[ 修改信息 ]</a>')
+                j.find(".tc-info").html("您的宝宝已经<strong>" + l.tip + '</strong>啦！<a href="javascript:;" class="tci-change" clstag="search|keycount|search|updatebabyinfo">[ 修改信息 ]</a>')
             } else {
                 if (l.status == "future") {
-                    j.find(".tc-info").html("您的宝宝即将在<strong>" + l.tip + '</strong>后出生！<a href="javascript:;" class="tci-change" clstag="searche|keycount|searche|updatebabyinfo">[ 修改信息 ]</a>')
+                    j.find(".tc-info").html("您的宝宝即将在<strong>" + l.tip + '</strong>后出生！<a href="javascript:;" class="tci-change" clstag="search|keycount|search|updatebabyinfo">[ 修改信息 ]</a>')
                 }
             }
         }
@@ -2117,7 +2117,7 @@ SEARCH.get_baby_info = function() {
     }
     function g(l, k) {
         var m = l + "-" + c + "-" + h + "-" + k;
-        $.ajax({url: "http://uprofile.jd.controller/u/baby/setinfo?babyinfo=" + m,async: true,dataType: "jsonp",success: function(o) {
+        $.ajax({url: "http://uprofile.jd.com/u/baby/setinfo?babyinfo=" + m,async: true,dataType: "jsonp",success: function(o) {
                 if (!o || o.flag != 2) {
                     alert("Joy,没记住您的选择...");
                     return
@@ -2131,7 +2131,7 @@ SEARCH.get_baby_info = function() {
                 }
             }})
     }
-    $.ajax({url: "http://uprofile.jd.controller/u/baby/getinfo?callback=?",async: true,dataType: "jsonp",success: function(l) {
+    $.ajax({url: "http://uprofile.jd.com/u/baby/getinfo?callback=?",async: true,dataType: "jsonp",success: function(l) {
             var l = l.babyinfo.split("-");
             if (!l || !l[0]) {
                 j.removeClass("hide").find(".query-con").removeClass("hide");
@@ -2184,7 +2184,7 @@ SEARCH.get_baby_info = function() {
         jdModelCallCenter.settings.fn = function() {
             g(f, a)
         };
-        $.getJSON("http://passport.jd.controller/loginservice.aspx?method=Login&callback=?", function(l) {
+        $.getJSON("http://passport.jd.com/loginservice.aspx?method=Login&callback=?", function(l) {
             if (l && l.Identity && l.Identity.IsAuthenticated) {
                 g(f, a)
             } else {
@@ -2198,8 +2198,8 @@ SEARCH.get_paipai_ware = function(c) {
     if (!c) {
         return
     }
-    var d = this, b = encodeURIComponent(QUERY_KEYWORD), a = "http://se.paipai.controller/comm_search?KeyWord=" + b + "&charSet=gbk&PTAG=12468." + c + ".6";
-    $.ajax({url: "http://sse1.paipai.controller/comm_json?charset=utf-8&dtype=jsonp&dtag=searche&KeyWord=" + b + "&PageSize=5&ShowClass=1",dataType: "jsonp",scriptCharset: "utf-8",success: function(h) {
+    var d = this, b = encodeURIComponent(QUERY_KEYWORD), a = "http://se.paipai.com/comm_search?KeyWord=" + b + "&charSet=gbk&PTAG=12468." + c + ".6";
+    $.ajax({url: "http://sse1.paipai.com/comm_json?charset=utf-8&dtype=jsonp&dtag=search&KeyWord=" + b + "&PageSize=5&ShowClass=1",dataType: "jsonp",scriptCharset: "utf-8",success: function(h) {
             if (typeof (h) != "object" || h.retCode != "0" || h.data.list.length < 5) {
                 return
             }
@@ -2220,14 +2220,14 @@ SEARCH.get_paipai_ware = function(c) {
 };
 SEARCH.get_adv_info = function(f, d, c, b, e) {
     var g = this, a = encodeURIComponent(window.REAL_KEYWORD || window.QUERY_KEYWORD);
-    $.ajax({url: "http://x.jd.controller/Search?ad_type=7&ad_ids=291:" + f + ",292:4&keyword=" + a + "&page=" + d + "&urlcid3=" + c,dataType: "jsonp",success: function(s) {
+    $.ajax({url: "http://x.jd.com/Search?ad_type=7&ad_ids=291:" + f + ",292:4&keyword=" + a + "&page=" + d + "&urlcid3=" + c,dataType: "jsonp",success: function(s) {
             if (typeof (s) != "object" || !s["291"].length && !s["292"].length) {
                 $("#ad_left").html("").hide();
                 $("#shop-choice").html("").hide();
                 return false
             }
             var p = e == "_3" ? "190" : "160", q = '<li class="fore">';
-            q += '<div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},81);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="' + p + '" height="' + p + '" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.controller/cms/s' + p + "x" + p + '_{#image_url#}"></a></div>';
+            q += '<div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},81);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="' + p + '" height="' + p + '" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s' + p + "x" + p + '_{#image_url#}"></a></div>';
             q += '<div class="rate"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},81);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div>';
             q += '<div class="p-price"><em></em><strong class="J_{#sku_id#}"></strong></div></li>';
             for (var n = 0, k = s["291"].length, o = "", h = []; n < k; n++) {
@@ -2244,13 +2244,13 @@ SEARCH.get_adv_info = function(f, d, c, b, e) {
                 $("#ad_left").html("").hide()
             }
             if (b == "") {
-                var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="160" height="160" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.controller/cms/s160x160_{#image_url#}"></a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><em></em><strong class="J_{#sku_id#}"></strong></div></li>'
+                var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="160" height="160" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s160x160_{#image_url#}"></a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><em></em><strong class="J_{#sku_id#}"></strong></div></li>'
             } else {
                 if (b == "_1") {
-                    var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="160" height="160" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.controller/cms/s160x160_{#image_url#}"></a></div><div class="p-scroll"><a href="javascript:;" class="p-scroll-btn p-scroll-prev">&lt;</a><div class="p-scroll-wrap"><ul><li><a href="javascript:;" class="curr"><img data-img="1" width="27" height="27" data-skuid="{#sku_id#}" data-lazyload="http://img1{#index#}.360buyimg.controller/cms/s160x160_{#image_url#}"></a></li></ul></div><a href="javascript:;" class="p-scroll-btn p-scroll-next">&gt;</a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><strong class="J_{#sku_id#}"></strong></div><div class="extra"><span class="star"><span class="star-white"><span id="adv-star-{#sku_id#}" class="star-yellow h">&nbsp;</span></span></span><a id="adv-comment-{#sku_id#}">已有人评价</a></div></li>'
+                    var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="160" height="160" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s160x160_{#image_url#}"></a></div><div class="p-scroll"><a href="javascript:;" class="p-scroll-btn p-scroll-prev">&lt;</a><div class="p-scroll-wrap"><ul><li><a href="javascript:;" class="curr"><img data-img="1" width="27" height="27" data-skuid="{#sku_id#}" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s160x160_{#image_url#}"></a></li></ul></div><a href="javascript:;" class="p-scroll-btn p-scroll-next">&gt;</a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><strong class="J_{#sku_id#}"></strong></div><div class="extra"><span class="star"><span class="star-white"><span id="adv-star-{#sku_id#}" class="star-yellow h">&nbsp;</span></span></span><a id="adv-comment-{#sku_id#}">已有人评价</a></div></li>'
                 } else {
                     if (b == "_2") {
-                        var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="220" height="220" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.controller/cms/s220x220_{#image_url#}"></a></div><div class="p-scroll"><a href="javascript:;" class="p-scroll-btn p-scroll-prev">&lt;</a><div class="p-scroll-wrap"><ul><li><a href="javascript:;" class="curr"><img data-img="1" width="27" height="27" data-skuid="{#sku_id#}" data-lazyload="http://img1{#index#}.360buyimg.controller/cms/s220x220_{#image_url#}"></a></li></ul></div><a href="javascript:;" class="p-scroll-btn p-scroll-next">&gt;</a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><strong class="J_{#sku_id#}"></strong></div><div class="extra"><span class="star"><span class="star-white"><span id="adv-star-{#sku_id#}" class="star-yellow h">&nbsp;</span></span></span><a id="adv-comment-{#sku_id#}">已有人评价</a></div></li>'
+                        var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="220" height="220" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s220x220_{#image_url#}"></a></div><div class="p-scroll"><a href="javascript:;" class="p-scroll-btn p-scroll-prev">&lt;</a><div class="p-scroll-wrap"><ul><li><a href="javascript:;" class="curr"><img data-img="1" width="27" height="27" data-skuid="{#sku_id#}" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s220x220_{#image_url#}"></a></li></ul></div><a href="javascript:;" class="p-scroll-btn p-scroll-next">&gt;</a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><strong class="J_{#sku_id#}"></strong></div><div class="extra"><span class="star"><span class="star-white"><span id="adv-star-{#sku_id#}" class="star-yellow h">&nbsp;</span></span></span><a id="adv-comment-{#sku_id#}">已有人评价</a></div></li>'
                     }
                 }
             }
@@ -2287,7 +2287,7 @@ SEARCH.init = function(page, total_page, result_count, sort, scroll, shop_id, ci
     this.get_ware_info(), this.get_shop_info(shop_id), this.get_multi_shops(), this.bind_events.init(), this.relate_search.init(), this.top_page_html(page, total_page, result_count, scroll), this.bottom_page_html(page, total_page, scroll), this.sort_html(sort), this.image_scroll('#plist li:not([done="1"]) .p-scroll');
     this.get_paipai_ware(paipai);
     $.delayLoad(true, "script/digital_music_download.js?100.js", "utf-8", "", 'li[e-tag!="1"] a.free-download');
-    $.ajax({url: "http://x.jd.controller/ShowInterface?ad_ids=86:1,62:1," + (window.pageConfig.wideVersion ? 93 : 87) + ":1&urlcid3=" + cid + "&ad_type=8&spread_type=1",dataType: "jsonp",success: function(data) {
+    $.ajax({url: "http://x.jd.com/ShowInterface?ad_ids=86:1,62:1," + (window.pageConfig.wideVersion ? 93 : 87) + ":1&urlcid3=" + cid + "&ad_type=8&spread_type=1",dataType: "jsonp",success: function(data) {
             if (typeof (data) != "object") {
                 return false
             }
@@ -2309,7 +2309,7 @@ SEARCH.init = function(page, total_page, result_count, sort, scroll, shop_id, ci
     $("#sidepanel").find("a.gotop").attr("href", "javascript:void(0)").click(function() {
         window.scrollTo(0, 0)
     });
-    $.ajax({url: "http://guang.jd.controller/init/",dataType: "jsonp",success: function(data) {
+    $.ajax({url: "http://guang.jd.com/init/",dataType: "jsonp",success: function(data) {
             eval(data)
         }})
 };
